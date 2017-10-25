@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   Platform,
@@ -12,87 +6,35 @@ import {
   View,
   TouchableHighlight
 } from 'react-native';
+import Coffee from './components/pages/Coffee';
 
-import { connect } from 'react-redux';
-import { fetchCoffeeFromAPI } from './actions';
+import { Container, Header, Content, Footer, FooterTab, Button, Icon } from 'native-base';
+export default class App extends Component {
+  render() {
+    return (
+      <Container>
+        <Header>
+          <Text>KaffeDuck</Text>
+        </Header>
+        <Footer>
+          <FooterTab>
+            <Button>
+              <Icon name="apps" />
+            </Button>
+            <Button>
+              <Icon name="camera" />
+            </Button>
+            <Button active>
+              <Icon active name="navigate" />
+            </Button>
+            <Button>
+              <Icon name="person" />
+            </Button>
+          </FooterTab>
+        </Footer>
+        <Content />
 
-let styles;
-
-// const instructions = Platform.select({
-//   ios: 'Press Cmd+R to reload,\n' +
-//     'Cmd+D or shake for dev menu',
-//   android: 'Double tap R on your keyboard to reload,\n' +
-//     'Shake or press menu button for dev menu',
-// });
-
-const App = (props) => {
-  const {
-    container,
-    text,
-    button,
-    buttonText
-  } = styles
-
-  const { coffee, isFetching } = props.coffee;
-  console.log("Coffee: ", props.coffee);
-
-  return (
-    <View style={container}>
-      <Text style={text}>Welcome to React Native!</Text>
-      <TouchableHighlight onPress={props.getCoffee} style={button}>
-        <Text style={buttonText}>Fetch Data</Text>
-      </TouchableHighlight>
-      {
-        isFetching && <Text>Loading</Text>
-      }
-      {
-        coffee.length ? (
-          coffee.map((coffee,index) => {
-            return (
-              <View key={index}>
-                <Text>Name: {coffee.name}</Text>
-                <Text>Type: {coffee.roast_type}</Text>
-                <Text>Price: {coffee.price}</Text>
-                <Text>Size: {coffee.size}</Text>
-              </View>
-            )
-          })
-        ) : null
-      }
-    </View>
-  );
-}
-
-styles = StyleSheet.create({
-  container: {
-    marginTop: 100,
-    paddingLeft: 20,
-    paddingTop: 20
-  },
-  text: {
-    textAlign: 'center'
-  },
-  button: {
-    backgroundColor: 'black',
-    height:60,
-    justifyContent:'center',
-    alignItems:'center'
-  },
-  buttonText: {
-    color: 'white'
-  }
-});
-
-function mapStateToProps(state){
-  return {
-    coffee: state.coffee
+      </Container>
+    );
   }
 }
-
-function mapDispatchToProps(dispatch){
-  return {
-    getCoffee: () => dispatch(fetchCoffeeFromAPI())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
