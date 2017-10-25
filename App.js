@@ -51,7 +51,9 @@ const App = (props) => {
             return (
               <View key={index}>
                 <Text>Name: {coffee.name}</Text>
-                <Text>Birth year: {coffee.birth_year}</Text>
+                <Text>Type: {coffee.roast_type}</Text>
+                <Text>Price: {coffee.price}</Text>
+                <Text>Size: {coffee.size}</Text>
               </View>
             )
           })
