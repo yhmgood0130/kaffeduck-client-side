@@ -5,14 +5,14 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
+import { Container, Header, Content, Form, Item, Input, Label } from 'native-base'
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
-class Login extends Component {
+class Quiz extends Component {
   static propTypes = {
     routes: PropTypes.object,
   };
-
   render () {
     const {routes} = this.context;
     //const goToPageTwo = () => Actions.pageTwo({text: 'Helo world'});
@@ -22,6 +22,8 @@ class Login extends Component {
           The current scene is titled {this.props.routes.scene.title}.
         </Text>
         <Text onPress={Actions.rootTabBar}>This is PageOne!</Text>
+        <Text onPress={Actions.quiz}>Time to take a quiz!</Text>
+
       </View>
 
     );
@@ -39,4 +41,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default connect(({routes}) => ({routes}))(Login);
+export default connect(({routes}) => ({routes}))(Quiz);
