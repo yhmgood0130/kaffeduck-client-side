@@ -31,7 +31,7 @@ const kaffeduck = () => (
   <Provider store={store}>
     <RouterWithRedux>
       <Scene key="root">
-        <Scene key="login" component={Login} title="Welcome to KaffeDuck" initial={true}/>
+        <Scene key="login" navigationBarStyle={{ backgroundColor:'#edc42f' }} component={Login} title="Welcome to KaffeDuck" initial={true}/>
         <Scene key="quiz" component={Quiz} title = "Quiz" hideNavBar={true} />
         <Scene
           key="rootTabBar"
