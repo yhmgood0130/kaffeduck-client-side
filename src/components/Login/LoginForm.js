@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, StatusBar, Image } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 export default class LogInForm extends Component {
   render() {
@@ -29,7 +30,7 @@ export default class LogInForm extends Component {
           <TouchableOpacity style={styles.buttonContainer}>
             <Text style={styles.buttonText}>LOGIN</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.FacebookStyle} activeOpacity={0.5}>
+          <TouchableOpacity onPress={Actions.quiz} style={styles.FacebookStyle} activeOpacity={0.5}>
              <Image
               source={require('../../images/facebook.png')}
               style={styles.ImageIconStyle}
@@ -93,7 +94,6 @@ const styles = StyleSheet.create({
    height: 25,
    width: 25,
    resizeMode : 'stretch',
-
  },
  TextStyle :{
    color: "#fff",
