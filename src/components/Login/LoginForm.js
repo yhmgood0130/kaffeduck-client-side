@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: 'rgba(255,255,255,0.2)',
     marginBottom: 10,
-    color: '#7e65a8',
+    color: '#560675',
     paddingHorizontal: 10
   },
   buttonContainer: {
