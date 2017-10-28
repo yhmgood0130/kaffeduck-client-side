@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, StatusBar, Image } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, StatusBar, Image, Dimensions } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 export default class LogInForm extends Component {
@@ -38,7 +38,7 @@ export default class LogInForm extends Component {
              <View style={styles.SeparatorLine} />
              <Text style={styles.TextStyle}> Login Using Facebook </Text>
            </TouchableOpacity>
-           <TouchableOpacity style={styles.GooglePlusStyle} activeOpacity={0.5}>
+           <TouchableOpacity onPress={Actions.home} style={styles.GooglePlusStyle} activeOpacity={0.5}>
              <Image
               source={require('../../images/google.png')}
               style={styles.ImageIconStyle}
