@@ -4,7 +4,7 @@ import { Provider, connect } from 'react-redux';
 import { Actions, ActionConst, Router, Scene } from 'react-native-router-flux';
 
 
-const Quiz3 = () => {
+const Result = () => {
   return (
   <View style={styles.container}>
     <View style={styles.logoContainer}>
@@ -12,20 +12,22 @@ const Quiz3 = () => {
         source={require('../../../images/coffee_duck.jpeg')}
         style={styles.logo}
         />
-      <Text style={styles.title}>Explore the coffee world with KaffeDuck. This Duck will help you to choose the right type of coffee for you.</Text>
+      <Text style={styles.title}>Congratulation! Here&apos;s what KaffeDuck found your you based on your answers.</Text>
 
-      <TouchableOpacity onPress={Actions.result} style={styles.GooglePlusStyle} activeOpacity={0.5}>
+      <Text>Suggested Coffees</Text>
+      <TouchableOpacity onPress={Actions.home} style={styles.GooglePlusStyle} activeOpacity={0.5}>
 
          <Text style={styles.TextStyle}> Login Using Facebook </Text>
        </TouchableOpacity>
-       <TouchableOpacity onPress={Actions.result} style={styles.GooglePlusStyle} activeOpacity={0.5}>
+      <Text>Suggested Brewing Method</Text>
+       <TouchableOpacity onPress={Actions.home} style={styles.GooglePlusStyle} activeOpacity={0.5}>
 
           <Text style={styles.TextStyle}> Login Using Facebook </Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={Actions.result} style={styles.GooglePlusStyle} activeOpacity={0.5}>
+       <TouchableOpacity onPress={Actions.home} style={styles.GooglePlusStyle} activeOpacity={0.5}>
 
-           <Text style={styles.TextStyle}> Login Using Facebook </Text>
-         </TouchableOpacity>
+         <Text style={styles.TextStyle}> Would like to see more coffees? {'\n'} Click here to explore more! </Text>
+       </TouchableOpacity>
      </View>
    </View>
  )
@@ -91,4 +93,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default connect(({routes}) => ({routes}))(Quiz3)
+export default connect(({routes}) => ({routes}))(Result)

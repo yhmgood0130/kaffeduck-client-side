@@ -1,19 +1,14 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   Platform,
   StyleSheet,
   Text,
   View,
-  TouchableHighlight
+  TouchableHighlight,
+  ScrollView
 } from 'react-native';
 import { Button } from 'native-base';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { fetchCoffeeFromAPI } from '../../actions';
 
 let styles;
@@ -27,40 +22,67 @@ const Coffee = (props) => {
   } = styles
 
   const { coffee, isFetching } = props.coffee;
-  console.log("Coffee: ", props.coffee);
+
+  lightRoast = () => {
+    return coffee.map((coffee,index) => {
+      if(coffee.roast_type === "Light Roast"){
+      return (
+        <View key={index}>
+          <Text>{coffee.name}</Text>
+          <Text>$ {coffee.price} {coffee.size} oz</Text>
+          <Text>{coffee.size} oz</Text>
+        </View>
+      )
+    }
+    })
+  }
+  mediumRoast = () => {
+    return coffee.map((coffee,index) => {
+      if(coffee.roast_type === "Medium Roast"){
+      return (
+        <View key={index}>
+          <Text>{coffee.name}</Text>
+          <Text>$ {coffee.price} {coffee.size} oz</Text>
+          <Text>{coffee.size} oz</Text>
+        </View>
+      )
+    }
+    })
+  }
+  darkRoast = () => {
+    return coffee.map((coffee,index) => {
+      if(coffee.roast_type === "Dark Roast"){
+      return (
+        <View key={index}>
+          <Text>{coffee.name}</Text>
+          <Text>$ {coffee.price} {coffee.size} oz</Text>
+          <Text>{coffee.size} oz</Text>
+        </View>
+      )
+    }
+    })
+  }
 
   return (
-    <View style={container}>
+    <ScrollView style={container}>
       <Text style={text}>Welcome to React Native!</Text>
-      <TouchableHighlight onPress={props.getCoffee} style={button}>
-        <Text style={buttonText}>Fetch Data</Text>
-      </TouchableHighlight>
-      {
-        isFetching && <Text>Loading</Text>
-      }
-      {
-        coffee.length ? (
-          coffee.map((coffee,index) => {
-            return (
-              <View key={index}>
-                <Text>Name: {coffee.name}</Text>
-                <Text>Type: {coffee.roast_type}</Text>
-                <Text>Price: {coffee.price}</Text>
-                <Text>Size: {coffee.size}</Text>
-              </View>
-            )
-          })
-        ) : null
-      }
-    </View>
+      <Text style={text}>Light Roast</Text>
+      {this.lightRoast()}
+      <Text style={text}>Medium Roast</Text>
+      {this.mediumRoast()}
+      <Text style={text}>Dark Roast</Text>
+      {this.darkRoast()}
+    </ScrollView>
   );
 }
+// <TouchableHighlight onPress={this.getCoffee} style={button}>
+//   <Text style={buttonText}>Fetch Data</Text>
+// </TouchableHighlight>
 
 styles = StyleSheet.create({
   container: {
-    marginTop: 100,
-    paddingLeft: 20,
-    paddingTop: 20
+    marginTop: 20,
+    padding: 20
   },
   text: {
     textAlign: 'center'

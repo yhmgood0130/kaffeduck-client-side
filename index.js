@@ -15,12 +15,16 @@ import Quiz from './src/components/pages/quiz/Quiz';
 import Quiz1 from './src/components/pages/quiz/Quiz1';
 import Quiz2 from './src/components/pages/quiz/Quiz2';
 import Quiz3 from './src/components/pages/quiz/Quiz3';
+import Result from './src/components/pages/quiz/Result';
+import { fetchCoffeeFromAPI } from './src/actions';
 
 import { createIconSetFromFontello } from 'react-native-vector-icons';
 import fontelloConfig from './src/config.json';
 const Iconic = createIconSetFromFontello(fontelloConfig);
 
 const store = configureStore()
+
+store.dispatch(fetchCoffeeFromAPI());
 const RouterWithRedux = connect()(Router);
 
 const TabIcon = ({ selected, name}) => {
@@ -39,6 +43,7 @@ const kaffeduck = () => (
         <Scene key="quiz1" component={Quiz1} title="Quiz1" hideNavBar={true} panHandlers={null}/>
         <Scene key="quiz2" component={Quiz2} title="Quiz2" hideNavBar={true} panHandlers={null}/>
         <Scene key="quiz3" component={Quiz3} title="Quiz3" hideNavBar={true} panHandlers={null}/>
+        <Scene key="result" component={Result} title="Result" hideNavBar={true} panHandlers={null}/>
 
         <Scene
           key="rootTabBar"

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions, Image, ImageBackground, TouchableOpacity, Linking } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+import Communications from 'react-native-communications';
 
 const Contact = () => {
   return (
@@ -15,11 +16,11 @@ const Contact = () => {
         </View>
         <Text style={styles.name}>Hyunmo (Moe)</Text>
         <View style={styles.socialContainer}>
-          <TouchableOpacity onPress={Actions.home} style={styles.socialStyle} activeOpacity={0.5}>
+          <TouchableOpacity onPress={() => Communications.phonecall('7205457597', true)} style={styles.socialStyle} activeOpacity={0.5}>
             <Image source={require('../../images/phone.png')} style={styles.socialLogo} />
             <Text style={styles.social}>(720)-545-7597</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.home} style={styles.socialStyle} activeOpacity={0.5}>
+          <TouchableOpacity onPress={() => Communications.email(['yhmgood0130@gmail.com', 'emailAddress2'],null,null,'My Subject','My body text')} style={styles.socialStyle} activeOpacity={0.5}>
             <Image source={require('../../images/email.png')} style={styles.socialLogo} />
             <Text style={styles.email}>yhmgood0130@gmail.com</Text>
           </TouchableOpacity>
