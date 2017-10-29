@@ -17,6 +17,7 @@ import Quiz2 from './src/components/pages/quiz/Quiz2';
 import Quiz3 from './src/components/pages/quiz/Quiz3';
 import Result from './src/components/pages/quiz/Result';
 import { fetchCoffeeFromAPI } from './src/actions';
+import { fetchCoffeeMakerFromAPI } from './src/actions';
 
 import { createIconSetFromFontello } from 'react-native-vector-icons';
 import fontelloConfig from './src/config.json';
@@ -25,6 +26,7 @@ const Iconic = createIconSetFromFontello(fontelloConfig);
 const store = configureStore()
 
 store.dispatch(fetchCoffeeFromAPI());
+store.dispatch(fetchCoffeeMakerFromAPI());
 const RouterWithRedux = connect()(Router);
 
 const TabIcon = ({ selected, name}) => {

@@ -14,7 +14,7 @@ const Contact = () => {
             style={styles.picture}
             />
         </View>
-        <Text style={styles.name}>Hyunmo (Moe)</Text>
+        <Text style={styles.name}>Hyunmo "Moe"</Text>
         <View style={styles.socialContainer}>
           <TouchableOpacity onPress={() => Communications.phonecall('7205457597', true)} style={styles.socialStyle} activeOpacity={0.5}>
             <Image source={require('../../images/phone.png')} style={styles.socialLogo} />
