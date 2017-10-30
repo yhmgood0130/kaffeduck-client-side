@@ -1,8 +1,42 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, StatusBar, Image, Dimensions } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import firebase from 'firebase';
+
+const provider = new firebase.auth.FacebookAuthProvider;
+const credential = provider.credential(token);
+// provider.setCustomParameters({
+//   'display': 'popup'
+// });
 
 export default class LogInForm extends Component {
+  state = { email: '', password: '', error: '', loading: false };
+  onLoginPress() {
+      this.setState({ error: '', loading: true });
+
+      const { email, password } = this.state;
+
+      firebase.auth().signInWithCredential(credential);
+
+      firebase.auth().getRedirectResult().then(function(result) {
+      if (result.credential) {
+        var token = result.credential.accessToken;
+      }
+          var user = result.user;
+        }).catch(function(error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          var email = error.email;
+          var credential = error.credential;
+        });
+
+
+      // firebase.auth().signInWithEmailAndPassword(email, password)
+      //     .then(() => { this.setState({ error: '', loading: false }); })
+      //     .catch(() => {
+      //         this.setState({ error: 'Authentication failed.', loading: false });
+      //     });
+  }
   render() {
     return (
         <View style={styles.container}>
@@ -30,7 +64,10 @@ export default class LogInForm extends Component {
           <TouchableOpacity style={styles.buttonContainer}>
             <Text style={styles.buttonText}>LOGIN</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={Actions.quiz} style={styles.FacebookStyle} activeOpacity={0.5}>
+          <TouchableOpacity onPress={Actions.signup} style={styles.buttonContainer}>
+            <Text style={styles.buttonText}>CREATE YOUR ACCOUNT</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.onLoginPress.bind(this)} style={styles.FacebookStyle} activeOpacity={0.5}>
              <Image
               source={require('../../images/facebook.png')}
               style={styles.ImageIconStyle}
@@ -50,6 +87,12 @@ export default class LogInForm extends Component {
     );
   }
 }
+
+// <TouchableOpacity onPress={Actions.quiz} style={styles.FacebookStyle} activeOpacity={0.5}>
+
+// onSubmitEditing={() => this.passwordInput.focus()}
+
+// ref={(input) => this.passwordInput = input}
 
 const styles = StyleSheet.create({
   container:{

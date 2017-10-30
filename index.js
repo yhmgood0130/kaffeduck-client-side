@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Text, AppRegistry } from 'react-native';
 import App from './App';
 import { Provider, connect } from 'react-redux';
@@ -11,6 +11,7 @@ import Coffee from './src/components/pages/Coffee';
 import Subscription from './src/components/pages/Subscription';
 import Contact from './src/components/pages/Contact';
 import Login from './src/components/Login/Login';
+import Signup from './src/components/Login/Signup';
 import Quiz from './src/components/pages/quiz/Quiz';
 import Quiz1 from './src/components/pages/quiz/Quiz1';
 import Quiz2 from './src/components/pages/quiz/Quiz2';
@@ -18,9 +19,9 @@ import Quiz3 from './src/components/pages/quiz/Quiz3';
 import Result from './src/components/pages/quiz/Result';
 import { fetchCoffeeFromAPI } from './src/actions';
 import { fetchCoffeeMakerFromAPI } from './src/actions';
-
 import { createIconSetFromFontello } from 'react-native-vector-icons';
 import fontelloConfig from './src/config.json';
+import firebase from 'firebase';
 const Iconic = createIconSetFromFontello(fontelloConfig);
 
 const store = configureStore()
@@ -36,11 +37,24 @@ const TabIcon = ({ selected, name}) => {
 }
 // <Scene key="pageTwo" component={PageTwo} title="PageTwo" />
 
-const kaffeduck = () => (
+class kaffeduck extends Component {
+  componentWillMount() {
+        firebase.initializeApp({
+          apiKey: "AIzaSyCgMyWgdT-ykEPvOJ14pQgLUo7xudstVQw",
+          authDomain: "kaffeduck-quack.firebaseapp.com",
+          databaseURL: "https://kaffeduck-quack.firebaseio.com",
+          projectId: "kaffeduck-quack",
+          storageBucket: "",
+          messagingSenderId: "181940564334"
+        });
+    }
+  render(){
+    return (
   <Provider store={store}>
     <RouterWithRedux>
       <Scene key="root">
         <Scene key="login" navigationBarStyle={{ backgroundColor:'#edc42f' }} component={Login} title="Welcome to KaffeDuck" initial={true}/>
+        <Scene key="signup" navigationBarStyle={{ backgroundColor:'#edc42f' }} component={Signup} title="Welcome to KaffeDuck" />
         <Scene key="quiz" component={Quiz} title = "Quiz" hideNavBar={true} panHandlers={null} />
         <Scene key="quiz1" component={Quiz1} title="Quiz1" hideNavBar={true} panHandlers={null}/>
         <Scene key="quiz2" component={Quiz2} title="Quiz2" hideNavBar={true} panHandlers={null}/>
@@ -59,6 +73,8 @@ const kaffeduck = () => (
       </Scene>
     </RouterWithRedux>
   </Provider>
-)
+    )
+  }
+}
 
 AppRegistry.registerComponent('kaffeduck', () => kaffeduck);
