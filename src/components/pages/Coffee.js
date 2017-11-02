@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, AsyncStorage, StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Dimensions, Image } from 'react-native';
+import { Platform, Alert, AsyncStorage, StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Dimensions, Image } from 'react-native';
 import { Button } from 'native-base';
 import { connect } from 'react-redux';
 import { fetchCoffeeFromAPI } from '../../actions';
@@ -9,6 +9,7 @@ const endpoint = "http://localhost:8080/kaffeduck-api/";
 
 let styles;
 let itemType = "";
+var alertMessage = 'The Item has been successfully added to your subscription.';
 const parsedToken = AsyncStorage.getItem('access_token');
 
 const Coffee = (props) => {
@@ -36,8 +37,7 @@ const Coffee = (props) => {
 
   addCart = (resourceId,itemType) => {
     let newOrder = {};
-
-    console.log(resourceId,itemType);
+    
     switch(itemType){
       case "coffee":
       newOrder = {
@@ -79,7 +79,7 @@ const Coffee = (props) => {
           <Text style={itemDescription}>$ {coffee.price} - {coffee.size} oz</Text>
           <Text style={itemDescription}>{coffee.description}</Text>
           <View style={buttonContainer}>
-            <TouchableOpacity style={cartButton}><Text style={buttonText}>Add Cart</Text></TouchableOpacity>
+            <TouchableOpacity onPress={this.confirmation.bind(this)} style={cartButton}><Text style={buttonText}>Add Cart</Text></TouchableOpacity>
           </View>
         </View>
       )
@@ -98,7 +98,7 @@ const Coffee = (props) => {
           <Text style={itemDescription}>$ {coffee.price} - {coffee.size} oz</Text>
           <Text style={itemDescription}>{coffee.description}</Text>
           <View style={buttonContainer}>
-            <TouchableOpacity key={coffee.resourceId} onPress={this.addCart.bind(this,coffee.resourceId,itemType)} style={cartButton}><Text style={buttonText}>Add Cart</Text></TouchableOpacity>
+            <TouchableOpacity key={coffee.resourceId} onPress={this.confirmation.bind(this)} style={cartButton}><Text style={buttonText}>Add Cart</Text></TouchableOpacity>
           </View>
         </View>
       )
@@ -116,7 +116,7 @@ const Coffee = (props) => {
           <Text style={itemDescription}>$ {coffee.price} - {coffee.size} oz</Text>
           <Text style={itemDescription}>{coffee.description}</Text>
           <View style={buttonContainer}>
-            <TouchableOpacity style={cartButton}><Text style={buttonText}>Add Cart</Text></TouchableOpacity>
+            <TouchableOpacity onPress={this.confirmation.bind(this)} style={cartButton}><Text style={buttonText}>Add Cart</Text></TouchableOpacity>
           </View>
         </View>
       )
@@ -132,11 +132,20 @@ const Coffee = (props) => {
           <Text style={itemName}>{coffeeMaker.name}</Text>
           <Text style={itemDescription}>$ {coffeeMaker.price} </Text>
           <View style={buttonContainer}>
-            <TouchableOpacity style={cartButton}><Text style={buttonText}>Add Cart</Text></TouchableOpacity>
+            <TouchableOpacity onPress={this.confirmation.bind(this)} style={cartButton}><Text style={buttonText}>Add Cart</Text></TouchableOpacity>
           </View>
         </View>
       )
     })
+  }
+  confirmation = () => {
+      Alert.alert(
+      'Item Added',
+      alertMessage,
+      [
+        {text: 'OK'},
+      ]
+    )
   }
 
   return (
@@ -162,6 +171,8 @@ const Coffee = (props) => {
     </ScrollView>
   );
 }
+
+// <TouchableOpacity key={coffee.resourceId} onPress={this.addCart.bind(this,coffee.resourceId,itemType)} style={cartButton}><Text style={buttonText}>Add Cart</Text></TouchableOpacity>
 
 const resizeMode = 'repeat';
 
