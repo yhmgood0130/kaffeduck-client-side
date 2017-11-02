@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions, Image } from 'react-native';
+import { Platform, AsyncStorage, StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions, Image } from 'react-native';
 import { Button } from 'native-base';
 import { connect } from 'react-redux';
 import { fetchCoffeeFromAPI } from '../../actions';
 import { fetchCoffeeMakerFromAPI } from '../../actions';
 
+const endpoint = "http://localhost:8080/kaffeduck-api/";
+
 let styles;
+let itemType = "";
+const parsedToken = AsyncStorage.getItem('access_token');
 
 const Coffee = (props) => {
   const {
@@ -18,41 +22,78 @@ const Coffee = (props) => {
     itemImage,
     addDelelteButton,
     buttonContainer,
-    cartButtons,
+    cartButton,
     itemDescription
   } = styles
 
   const { coffee, isFetching } = props.coffee;
   const { coffeeMaker } = props.coffeeMaker;
 
+  addCart = (resourceId,itemType) => {
+    let newOrder = {};
+
+    console.log(resourceId,itemType);
+    switch(itemType){
+      case "coffee":
+      newOrder = {
+        "customer": "/customers/1",
+        "coffee": `/coffees/${resourceId}`
+      };
+      break;
+      case "coffeemaker":
+      newOrder = {
+        "customer": "/customers/1",
+        "coffeemaker": `/coffeemakers/${resourceId}`
+      };
+      break;
+      default:
+      console.log("Invalid type");
+    }
+
+    let settings = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newOrder)
+    }
+
+    fetch(`${endpoint}subscriptions/`, settings)
+    .then((response) => response.json())
+  }
+
   lightRoast = () => {
+    itemType = "coffee";
     return coffee.map((coffee,index) => {
       if(coffee.roast_type === "Light Roast"){
       return (
-        <View style={itemContainer} key={index}>
+        <View style={itemContainer} key={coffee.resourceId}>
           <Image style={itemImage} source={{uri:coffee.url}} />
           <Text style={itemDescription}>{coffee.name}</Text>
           <Text style={itemDescription}>$ {coffee.price}</Text>
           <Text style={itemDescription}>{coffee.size} oz</Text>
           <View style={buttonContainer}>
-            <TouchableOpacity style={cartButtons}><Text>Add Cart</Text></TouchableOpacity>
+            <TouchableOpacity style={cartButton}><Text>Add Cart</Text></TouchableOpacity>
           </View>
         </View>
       )
     }
     })
   }
+
   mediumRoast = () => {
+    itemType = "coffee";
     return coffee.map((coffee,index) => {
       if(coffee.roast_type === "Medium Roast"){
       return (
-        <View style={itemContainer} key={index}>
+        <View style={itemContainer} key={coffee.resourceId}>
           <Image style={itemImage} source={{uri:coffee.url}} />
           <Text style={itemDescription}>{coffee.name}</Text>
           <Text style={itemDescription}>$ {coffee.price}</Text>
           <Text style={itemDescription}>{coffee.size} oz</Text>
           <View style={buttonContainer}>
-            <TouchableOpacity style={cartButtons}><Text>Add Cart</Text></TouchableOpacity>
+            <TouchableOpacity key={coffee.resourceId} onPress={this.addCart.bind(this,coffee.resourceId,itemType)} style={cartButton}><Text>Add Cart</Text></TouchableOpacity>
           </View>
         </View>
       )
@@ -60,16 +101,16 @@ const Coffee = (props) => {
     })
   }
   boldRoast = () => {
+    itemType = "coffee";
     return coffee.map((coffee,index) => {
       if(coffee.roast_type === "Bold Roast"){
       return (
-        <View style={itemContainer} key={index}>
+        <View style={itemContainer} key={coffee.resourceId}>
           <Image style={itemImage} source={{uri:coffee.url}} />
           <Text style={itemDescription}>{coffee.name}</Text>
           <Text style={itemDescription}>$ {coffee.price}</Text>
-          <Text style={itemDescription}>{coffee.size} oz</Text>
           <View style={buttonContainer}>
-            <TouchableOpacity style={cartButtons}><Text>Add Cart</Text></TouchableOpacity>
+            <TouchableOpacity style={cartButton}><Text>Add Cart</Text></TouchableOpacity>
           </View>
         </View>
       )
@@ -77,9 +118,10 @@ const Coffee = (props) => {
     })
   }
   coffeeMakers = () => {
+
     return coffeeMaker.map((coffeeMaker,index) => {
       return (
-        <View key={index}>
+        <View key={coffeeMaker.resourceId}>
           <Text>{coffeeMaker.name}</Text>
           <Text>$ {coffeeMaker.price} </Text>
         </View>
@@ -109,8 +151,8 @@ const Coffee = (props) => {
     </ScrollView>
   );
 }
-// <TouchableOpacity style={cartButtons}><Text>+</Text></TouchableOpacity>
-// <TouchableOpacity style={cartButtons}><Text>-</Text></TouchableOpacity>
+// <TouchableOpacity style={cartButton}><Text>+</Text></TouchableOpacity>
+// <TouchableOpacity style={cartButton}><Text>-</Text></TouchableOpacity>
 // For buttonContainer flexDirection: 'row',
 
 styles = StyleSheet.create({
@@ -153,7 +195,7 @@ styles = StyleSheet.create({
     width:150,
     alignItems: 'center',
   },
-  cartButtons: {
+  cartButton: {
     backgroundColor: 'rgba(255,62,255,0.8)',
     padding: 5
   },

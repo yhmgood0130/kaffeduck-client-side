@@ -3,9 +3,12 @@ import {
   View,
   Text,
   StyleSheet,
+  AsyncStorage
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+
+console.log(AsyncStorage.getItem('access_token'));
 
 const Subscription = () => {
   return (

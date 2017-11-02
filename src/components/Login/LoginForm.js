@@ -1,41 +1,54 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, StatusBar, Image, Dimensions } from 'react-native';
+import { AsyncStorage, View, Text, StyleSheet, TextInput, TouchableOpacity, StatusBar, Image, Dimensions } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import FBSDK, { LoginManager, AccessToken } from 'react-native-fbsdk'
 import firebase from 'firebase';
 
-const provider = new firebase.auth.FacebookAuthProvider;
-const credential = provider.credential(token);
-// provider.setCustomParameters({
-//   'display': 'popup'
-// });
-
 export default class LogInForm extends Component {
+
   state = { email: '', password: '', error: '', loading: false };
+
+  async saveItem(item, selectedValue) {
+    try {
+      await AsyncStorage.setItem(item, selectedValue);
+    } catch (error) {
+      console.error('AsyncStorage error: ' + error.message);
+    }
+  }
+
   onLoginPress() {
       this.setState({ error: '', loading: true });
 
       const { email, password } = this.state;
 
-      firebase.auth().signInWithCredential(credential);
-
-      firebase.auth().getRedirectResult().then(function(result) {
-      if (result.credential) {
-        var token = result.credential.accessToken;
-      }
-          var user = result.user;
-        }).catch(function(error) {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          var email = error.email;
-          var credential = error.credential;
-        });
-
-
-      // firebase.auth().signInWithEmailAndPassword(email, password)
-      //     .then(() => { this.setState({ error: '', loading: false }); })
-      //     .catch(() => {
-      //         this.setState({ error: 'Authentication failed.', loading: false });
-      //     });
+      LoginManager.logInWithReadPermissions(['public_profile', 'email']).then(
+        function(result) {
+          if(result.isCancelled){
+            alert('Login cancelled');
+          } else {
+            AccessToken.getCurrentAccessToken().then((accessTokenData) => {
+              const credential = firebase.auth.FacebookAuthProvider.credential(accessTokenData.accessToken)
+              firebase.auth().signInWithCredential(credential).then((result) => {
+                var token = firebase.auth().currentUser.getIdToken(true)
+                  .then((idToken) => {
+                    var base64Url = idToken.split('.')[1];
+                    var base64 = base64Url.replace('-', '+').replace('_', '/');
+                    let parsedToken = JSON.parse(window.atob(base64)).user_id;
+                    AsyncStorage.setItem('access_token', parsedToken);
+                    let token = AsyncStorage.getItem('access_token');
+                    console.log(token);
+                    console.log(parsedToken);
+                    Actions.quiz();
+                  })
+              }, (error) => {
+                console.log(error);
+              })
+            }, (error => {
+              console.log('Some error occured: ' + error);
+            }))
+          }
+        }
+      )
   }
   render() {
     return (
@@ -75,7 +88,7 @@ export default class LogInForm extends Component {
              <View style={styles.SeparatorLine} />
              <Text style={styles.TextStyle}> Login Using Facebook </Text>
            </TouchableOpacity>
-           <TouchableOpacity onPress={Actions.home} style={styles.GooglePlusStyle} activeOpacity={0.5}>
+           <TouchableOpacity onPress={Actions.quiz} style={styles.GooglePlusStyle} activeOpacity={0.5}>
              <Image
               source={require('../../images/google.png')}
               style={styles.ImageIconStyle}

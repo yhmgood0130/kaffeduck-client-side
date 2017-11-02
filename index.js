@@ -48,6 +48,15 @@ class kaffeduck extends Component {
           messagingSenderId: "181940564334"
         });
     }
+
+  checkAuth(){
+    return getStoredSessionToken().then(sessionToken =>{
+     if(sesstionToken)
+      Actions.home()
+     else
+      Actions.login()
+    })
+  }
   render(){
     return (
   <Provider store={store}>

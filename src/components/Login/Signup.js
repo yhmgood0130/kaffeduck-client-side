@@ -50,8 +50,8 @@ export default class SignupForm extends Component {
                     onChangeText={password => this.setState({ password })}
                     style={styles.inputStyle}
                 />
-                  <Text style={styles.errorTextStyle}>{this.state.error}</Text>
-                  {this.renderButtonOrSpinner()}
+                <Text style={styles.errorTextStyle}>{this.state.error}</Text>
+                {this.renderButtonOrSpinner()}
             </View>
         );
     }

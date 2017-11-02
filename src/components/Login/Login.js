@@ -4,18 +4,6 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import LoginForm from './LoginForm';
-// import * as firebase from 'firebase';
-//
-// // Initialize Firebase
-//   var config = {
-//     apiKey: "AIzaSyCgMyWgdT-ykEPvOJ14pQgLUo7xudstVQw",
-//     authDomain: "kaffeduck-quack.firebaseapp.com",
-//     databaseURL: "https://kaffeduck-quack.firebaseio.com",
-//     projectId: "kaffeduck-quack",
-//     storageBucket: "",
-//     messagingSenderId: "181940564334"
-//   };
-//   firebase.initializeApp(config);
 
 class Login extends Component {
   static propTypes = {
@@ -29,11 +17,11 @@ class Login extends Component {
 
     <View style={styles.container}>
       <View style={styles.logoContainer}>
-      <Image
-        source={require('../../images/coffee_duck.jpeg')}
-        style={styles.logo}
-        />
-      <Text style={styles.title}>Explore the coffee world with KaffeDuck. This Duck will help you to choose the right type of coffee for you.</Text>
+        <Image
+          source={require('../../images/coffee_duck.jpeg')}
+          style={styles.logo}
+          />
+        <Text style={styles.title}>Explore the coffee world with KaffeDuck. This Duck will help you to choose the right type of coffee for you.</Text>
       </View>
       <View style={styles.formContainer}>
         <LoginForm />

@@ -12,19 +12,19 @@ const Quiz1 = () => {
         source={require('../../../images/coffee_duck.jpeg')}
         style={styles.logo}
         />
-      <Text style={styles.title}>Explore the coffee world with KaffeDuck. This Duck will help you to choose the right type of coffee for you.</Text>
+      <Text style={styles.title}>Chocolate and coffee is a long-standing favorite amongst food-and-drink pairings. What is your favorite choice from options below?</Text>
 
-      <TouchableOpacity onPress={Actions.quiz2} style={styles.GooglePlusStyle} activeOpacity={0.5}>
+      <TouchableOpacity onPress={Actions.quiz2} style={styles.AnswerButton} activeOpacity={0.5}>
 
-         <Text style={styles.TextStyle}> Login Using Facebook </Text>
+         <Text style={styles.buttonFont}> Dark Chocolate </Text>
        </TouchableOpacity>
-       <TouchableOpacity onPress={Actions.quiz2} style={styles.GooglePlusStyle} activeOpacity={0.5}>
+       <TouchableOpacity onPress={Actions.quiz2} style={styles.AnswerButton} activeOpacity={0.5}>
 
-          <Text style={styles.TextStyle}> Login Using Facebook </Text>
+          <Text style={styles.buttonFont}> White Chocolate </Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={Actions.quiz2} style={styles.GooglePlusStyle} activeOpacity={0.5}>
+        <TouchableOpacity onPress={Actions.quiz2} style={styles.AnswerButton} activeOpacity={0.5}>
 
-           <Text style={styles.TextStyle}> Login Using Facebook </Text>
+           <Text style={styles.buttonFont}> Brownie </Text>
          </TouchableOpacity>
      </View>
    </View>
@@ -36,13 +36,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#f7d734"
   },
-  input: {
-    height: 40,
-    backgroundColor: 'rgba(255,255,255,0.4)',
-    marginBottom: 10,
-    color: 'green',
-    paddingHorizontal: 10
-  },
   logoContainer: {
     flexGrow:1,
     alignItems: 'center',
@@ -53,33 +46,28 @@ const styles = StyleSheet.create({
     height:100,
     borderRadius: 49
   },
-  buttonContainer: {
-    backgroundColor: 'blue',
-    paddingVertical: 15,
-    marginBottom:5
-  },
-  buttonText: {
+  buttonFont: {
+    fontSize:18,
+    fontWeight: 'bold',
     color: '#FFFFFF',
-    textAlign: "center",
-    fontWeight: '700'
+    textAlign: "center"
   },
   title: {
-    margin:50
+    margin:20,
+    fontSize:20,
+    fontWeight: 'bold',
+    fontFamily: 'Gurmukhi MN',
+    textAlign: 'center'
   },
-  GooglePlusStyle: {
-   flexDirection: 'row',
+  AnswerButton: {
+   flexGrow:1,
    alignItems: 'center',
+   justifyContent: 'center',
    backgroundColor: '#dc4e41',
-   height: 80,
+   height: 69,
+   width: 300,
    borderRadius: 5 ,
    margin: 13
- },
- ImageIconStyle: {
-   padding: 10,
-   margin: 5,
-   height: 25,
-   width: 25,
-   resizeMode : 'stretch',
  },
  TextStyle :{
    flex:1,
