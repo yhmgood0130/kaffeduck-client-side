@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, StatusBar, Image } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, ImageBackground, StatusBar, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions, ActionConst, Router, Scene } from 'react-native-router-flux';
 
@@ -7,7 +7,12 @@ import { Actions, ActionConst, Router, Scene } from 'react-native-router-flux';
 const Home = () => {
   return (
   <View style={styles.container}>
+    <ImageBackground source={require('../../images/background.jpg')} style={styles.backgroundImage} >
     <View style={styles.logoContainer}>
+    <Image
+      source={require('../../images/logo1.png')}
+      style={styles.logo2}
+      />
       <Image
         source={require('../../images/coffee_duck.jpeg')}
         style={styles.logo}
@@ -17,14 +22,14 @@ const Home = () => {
          <Text style={styles.TextStyle}>See Coffee & Brewing Method</Text>
       </TouchableOpacity>
      </View>
+     </ImageBackground>
    </View>
  )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#f7d734"
+    flex: 1
   },
   logoContainer: {
     flexGrow:1,
@@ -36,6 +41,12 @@ const styles = StyleSheet.create({
     height:150,
     borderRadius: 69
   },
+  logo2: {
+    width:150,
+    height:120,
+    marginTop:-40,
+    marginBottom:-10
+  },
   buttonText: {
     color: '#FFFFFF',
     textAlign: "center",
@@ -46,12 +57,13 @@ const styles = StyleSheet.create({
     fontSize:22,
     fontWeight: 'bold',
     fontFamily: 'Gurmukhi MN',
-    textAlign: 'center'
+    textAlign: 'center',
+    backgroundColor: 'rgba(0,0,0,0)'
   },
   ButtonStyle: {
    flexDirection: 'row',
    alignItems: 'center',
-   backgroundColor: '#dc4e41',
+   backgroundColor: 'rgb(147,156,76)',
    borderRadius: 5 ,
    margin: 13,
    position: 'absolute',
@@ -73,6 +85,11 @@ const styles = StyleSheet.create({
    textAlign: 'center',
    fontSize:18,
    fontWeight: 'bold'
+ },
+ backgroundImage: {
+   flex: 1,
+   width: null,
+   height: null,
  }
 });
 

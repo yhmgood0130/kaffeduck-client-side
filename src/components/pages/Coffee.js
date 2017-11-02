@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, AsyncStorage, StyleSheet, Text, View, TouchableOpacity, ScrollView, Dimensions, Image } from 'react-native';
+import { Platform, AsyncStorage, StyleSheet, Text, View, TouchableOpacity, ScrollView, ImageBackground, Dimensions, Image } from 'react-native';
 import { Button } from 'native-base';
 import { connect } from 'react-redux';
 import { fetchCoffeeFromAPI } from '../../actions';
@@ -23,7 +23,8 @@ const Coffee = (props) => {
     addDelelteButton,
     buttonContainer,
     cartButton,
-    itemDescription
+    itemDescription,
+    backgroundImage
   } = styles
 
   const { coffee, isFetching } = props.coffee;
@@ -131,29 +132,27 @@ const Coffee = (props) => {
 
   return (
     <ScrollView style={container}>
-      <Text style={text}>Welcome to React Native!</Text>
-      <Text style={text}>Light Roast</Text>
-      <View style={items} >
-        {this.lightRoast()}
-      </View>
-      <Text style={text}>Medium Roast</Text>
-      <View style={items} >
-        {this.mediumRoast()}
-      </View>
-      <Text style={text}>Bold Roast</Text>
-      <View style={items} >
-        {this.boldRoast()}
-      </View>
-      <Text style={text}>Coffee Maker</Text>
-      <View style={items} >
-        {this.coffeeMakers()}
-      </View>
+      <ImageBackground source={require('../../images/background.jpg')} style={backgroundImage} >
+        <Text style={text}>Light Roast</Text>
+        <View style={items} >
+          {this.lightRoast()}
+        </View>
+        <Text style={text}>Medium Roast</Text>
+        <View style={items} >
+          {this.mediumRoast()}
+        </View>
+        <Text style={text}>Bold Roast</Text>
+        <View style={items} >
+          {this.boldRoast()}
+        </View>
+        <Text style={text}>Coffee Maker</Text>
+        <View style={items} >
+          {this.coffeeMakers()}
+        </View>
+      </ImageBackground>
     </ScrollView>
   );
 }
-// <TouchableOpacity style={cartButton}><Text>+</Text></TouchableOpacity>
-// <TouchableOpacity style={cartButton}><Text>-</Text></TouchableOpacity>
-// For buttonContainer flexDirection: 'row',
 
 styles = StyleSheet.create({
   container: {
@@ -201,6 +200,11 @@ styles = StyleSheet.create({
   },
   itemDescription: {
     paddingBottom: 5
+  },
+  backgroundImage: {
+    flex: 1,
+    width: null,
+    height: null,
   }
 });
 

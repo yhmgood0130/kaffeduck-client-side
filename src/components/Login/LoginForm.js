@@ -88,7 +88,7 @@ export default class LogInForm extends Component {
              <View style={styles.SeparatorLine} />
              <Text style={styles.TextStyle}> Login Using Facebook </Text>
            </TouchableOpacity>
-           <TouchableOpacity onPress={Actions.quiz} style={styles.GooglePlusStyle} activeOpacity={0.5}>
+           <TouchableOpacity onPress={Actions.result} style={styles.GooglePlusStyle} activeOpacity={0.5}>
              <Image
               source={require('../../images/google.png')}
               style={styles.ImageIconStyle}
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10
   },
   buttonContainer: {
-    backgroundColor: '#db822e',
+    backgroundColor: 'rgb(147,156,76)',
     paddingVertical: 15,
     marginBottom:5
   },

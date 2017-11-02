@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import LoginForm from './LoginForm';
@@ -12,20 +12,25 @@ class Login extends Component {
 
   render () {
     const {routes} = this.context;
-    //const goToPageTwo = () => Actions.pageTwo({text: 'Helo world'});
     return (
 
     <View style={styles.container}>
-      <View style={styles.logoContainer}>
+      <ImageBackground source={require('../../images/background.jpg')} style={styles.backgroundImage} >
+        <View style={styles.logoContainer}>
         <Image
           source={require('../../images/coffee_duck.jpeg')}
           style={styles.logo}
           />
-        <Text style={styles.title}>Explore the coffee world with KaffeDuck. This Duck will help you to choose the right type of coffee for you.</Text>
-      </View>
-      <View style={styles.formContainer}>
-        <LoginForm />
-      </View >
+          <Image
+            source={require('../../images/coffee_duck.jpeg')}
+            style={styles.logo}
+            />
+          <Text style={styles.title}>Explore the coffee world with KaffeDuck. This Duck will help you to choose the right type of coffee for you.</Text>
+        </View>
+        <View style={styles.formContainer}>
+          <LoginForm />
+        </View >
+      </ImageBackground>
      </View >
     );
   }
@@ -33,7 +38,7 @@ class Login extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f7d734"
+    backgroundColor: "transparent"
   },
   logoContainer: {
     flexGrow:1,
@@ -57,6 +62,11 @@ const styles = StyleSheet.create({
   },
   formContainer : {
     marginTop:-50
+  },
+  backgroundImage: {
+    flex: 1,
+    width: null,
+    height: null
   }
 });
 

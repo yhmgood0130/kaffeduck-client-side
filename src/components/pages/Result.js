@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Text, StyleSheet, TouchableOpacity, Image, ImageBackground, Dimensions } from 'react-native';
+import { ScrollView, Text, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { Container, Header, View, DeckSwiper, Card, CardItem, Thumbnail,  Left, Body, Icon } from 'native-base';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
@@ -77,20 +77,18 @@ const Result = (props) => {
 
   return (
     <ScrollView style={styles.container}>
-      <ImageBackground source={require('../../../images/background.jpg')} style={styles.backgroundImage} >
-        <Text style={styles.title}>Match Result</Text>
-        <Text style={styles.SuggestionText}>Suggested Coffees</Text>
-        <View style={styles.Items}>
-         {this.displayCoffee()}
-        </View>
-        <Text style={styles.SuggestionText}>Suggested Coffee Method</Text>
-        <View style={styles.Items}>
-         {this.displayCoffeeMethod()}
-        </View>
-        <TouchableOpacity onPress={Actions.home} style={styles.AnswerButton} activeOpacity={0.5}>
-          <Text style={styles.ButtonFont}> Would like to see more coffees? {'\n'} Click here to explore more! </Text>
-        </TouchableOpacity>
-      </ImageBackground>
+      <Text style={styles.title}>Well done! Based on your answers, we recommend you Medium Roast Costa Rica Blend which is a full to heavy-bodied cup with a sweet and hearty richness and smooth finish here&apos;s what KaffeDuck found for you.</Text>
+      <Text style={styles.SuggestionText}>Suggested Coffees</Text>
+      <View style={styles.Items}>
+       {this.displayCoffee()}
+      </View>
+      <Text style={styles.SuggestionText}>Suggested Coffee Method</Text>
+      <View style={styles.Items}>
+       {this.displayCoffeeMethod()}
+      </View>
+      <TouchableOpacity onPress={Actions.home} style={styles.AnswerButton} activeOpacity={0.5}>
+        <Text style={styles.ButtonFont}> Would like to see more coffees? {'\n'} Click here to explore more! </Text>
+      </TouchableOpacity>
     </ScrollView>
  )
 }
@@ -98,7 +96,7 @@ const Result = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-     backgroundColor:'transparent'
+    backgroundColor: "#f7d734"
   },
   logoContainer: {
     flexGrow:1,
@@ -124,12 +122,11 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   SuggestionText: {
-    padding:10,
+    paddingBottom:10,
     fontSize:14,
     fontWeight: 'bold',
     fontFamily: 'Gurmukhi MN',
-    textAlign: 'center',
-    backgroundColor: "blue"
+    textAlign: 'center'
   },
   AnswerButton: {
    backgroundColor: '#dc4e41',
@@ -145,8 +142,9 @@ const styles = StyleSheet.create({
  },
  itemContainer: {
    padding:10,
-   height:220,
+   height:200,
    width:Dimensions.get('window').width / 2.2,
+   backgroundColor: 'rgba(0,0,0,0.7)',
    alignItems:'center'
  },
  cartButton: {
@@ -157,14 +155,9 @@ const styles = StyleSheet.create({
    paddingBottom: 5
  },
  itemImage: {
-   height:120,
-   width: 70,
+   height:90,
+   width: 50,
    marginBottom: 5
- },
- backgroundImage: {
-   flex: 1,
-   width: null,
-   height: null,
  }
 });
 

@@ -32,7 +32,7 @@ const RouterWithRedux = connect()(Router);
 
 const TabIcon = ({ selected, name}) => {
     return (
-      name == "ducky" ? <Iconic name={name} size={30} color="#900" /> : <Icon name={name} size={30} color="#900" />
+      name == "ducky" ? <Iconic name={name} size={30} color="#fff" /> : <Icon name={name} size={30} color="#fff" />
     )
 }
 // <Scene key="pageTwo" component={PageTwo} title="PageTwo" />
@@ -62,8 +62,8 @@ class kaffeduck extends Component {
   <Provider store={store}>
     <RouterWithRedux>
       <Scene key="root">
-        <Scene key="login" navigationBarStyle={{ backgroundColor:'#edc42f' }} component={Login} title="Welcome to KaffeDuck" initial={true}/>
-        <Scene key="signup" navigationBarStyle={{ backgroundColor:'#edc42f' }} component={Signup} title="Welcome to KaffeDuck" />
+        <Scene key="login" component={Login} title="Welcome to KaffeDuck" initial={true} hideNavBar={true} />
+        <Scene key="signup" navigationBarStyle={{ backgroundColor:'#fff' }} component={Signup} title="Welcome to KaffeDuck" />
         <Scene key="quiz" component={Quiz} title = "Quiz" hideNavBar={true} panHandlers={null} />
         <Scene key="quiz1" component={Quiz1} title="Quiz1" hideNavBar={true} panHandlers={null}/>
         <Scene key="quiz2" component={Quiz2} title="Quiz2" hideNavBar={true} panHandlers={null}/>
@@ -73,7 +73,7 @@ class kaffeduck extends Component {
         <Scene
           key="rootTabBar"
           tabs={true}
-          tabBarStyle={{backgroundColor: '#ffffff'}} panHandlers={null}>
+          tabBarStyle={{backgroundColor: 'rgb(100,52,17)'}} panHandlers={null}>
           <Scene key="home" component={Home} title="Home" name="home" icon={TabIcon} initial hideNavBar={true}/>
           <Scene key="subscription" component={Subscription} name="ducky" title="Subscription" icon={TabIcon} hideNavBar={true}/>
           <Scene key="coffee" component={Coffee} title="Coffee" name="coffee" icon={TabIcon} hideNavBar={true}/>
