@@ -17,6 +17,7 @@ import Quiz1 from './src/components/pages/quiz/Quiz1';
 import Quiz2 from './src/components/pages/quiz/Quiz2';
 import Quiz3 from './src/components/pages/quiz/Quiz3';
 import Result from './src/components/pages/quiz/Result';
+import Suggestion from './src/components/pages/quiz/Suggestion';
 import { fetchCoffeeFromAPI } from './src/actions';
 import { fetchCoffeeMakerFromAPI } from './src/actions';
 import { createIconSetFromFontello } from 'react-native-vector-icons';
@@ -47,7 +48,6 @@ class kaffeduck extends Component {
           messagingSenderId: "181940564334"
         });
     }
-    console.disableYellowBox = true;
 
   checkAuth(){
     return getStoredSessionToken().then(sessionToken =>{
@@ -58,6 +58,7 @@ class kaffeduck extends Component {
     })
   }
   render(){
+    console.disableYellowBox = true;
     return (
   <Provider store={store}>
     <RouterWithRedux>
@@ -69,6 +70,7 @@ class kaffeduck extends Component {
         <Scene key="quiz2" component={Quiz2} title="Quiz2" hideNavBar={true} panHandlers={null}/>
         <Scene key="quiz3" component={Quiz3} title="Quiz3" hideNavBar={true} panHandlers={null}/>
         <Scene key="result" component={Result} title="Result" hideNavBar={true} panHandlers={null}/>
+        <Scene key="suggestion" component={Suggestion} title="Suggestion" hideNavBar={true} panHandlers={null}/>
 
         <Scene
           key="rootTabBar"

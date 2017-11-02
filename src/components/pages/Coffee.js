@@ -77,7 +77,7 @@ const Coffee = (props) => {
         <View style={coffeeContainer} key={coffee.resourceId}>
           <Image style={coffeeImage} source={{uri:coffee.url}} />
           <Text style={itemName}>{coffee.name}</Text>
-          <Text style={itemDescription}>$ {coffee.price} - {coffee.size} oz</Text>
+          <Text style={itemPrice}>$ {coffee.price} - {coffee.size} oz</Text>
           <Text style={itemDescription}>{coffee.description}</Text>
           <View style={buttonContainer}>
             <TouchableOpacity onPress={this.confirmation.bind(this)} style={cartButton}><Text style={buttonText}>Add Cart</Text></TouchableOpacity>
@@ -96,7 +96,7 @@ const Coffee = (props) => {
         <View style={coffeeContainer} key={coffee.resourceId}>
           <Image style={coffeeImage} source={{uri:coffee.url}} />
           <Text style={itemName}>{coffee.name}</Text>
-          <Text style={itemDescription}>$ {coffee.price} - {coffee.size} oz</Text>
+          <Text style={itemPrice}>$ {coffee.price} - {coffee.size} oz</Text>
           <Text style={itemDescription}>{coffee.description}</Text>
           <View style={buttonContainer}>
             <TouchableOpacity key={coffee.resourceId} onPress={this.confirmation.bind(this)} style={cartButton}><Text style={buttonText}>Add Cart</Text></TouchableOpacity>
@@ -126,18 +126,26 @@ const Coffee = (props) => {
   }
   coffeeMakers = () => {
 
-    return coffeeMaker.map((coffeeMaker,index) => {
       return (
-        <View style={coffeMakerContainer} key={coffeeMaker.resourceId}>
-          <Image style={coffeeMakerImage} source={{uri:coffeeMaker.url}} />
-          <Text style={itemName}>{coffeeMaker.name}</Text>
-          <Text style={itemDescription}>$ {coffeeMaker.price} </Text>
+        <View style={items} >
+        <View style={coffeMakerContainer} key={coffeeMaker[0].resourceId}>
+          <Image style={coffeeMakerImage} source={require('../../images/frenchpress.png')} />
+          <Text style={itemName}>{coffeeMaker[0].name}</Text>
+          <Text style={itemPrice}>$ {coffeeMaker[0].price} </Text>
           <View style={buttonContainer}>
             <TouchableOpacity onPress={this.confirmation.bind(this)} style={cartButton}><Text style={buttonText}>Add Cart</Text></TouchableOpacity>
           </View>
         </View>
+        <View style={coffeMakerContainer} key={coffeeMaker[1].resourceId}>
+          <Image style={coffeeMakerImage} source={require("../../images/pourover.png")} />
+          <Text style={itemName}>{coffeeMaker[1].name}</Text>
+          <Text style={itemPrice}>$ {coffeeMaker[1].price} </Text>
+          <View style={buttonContainer}>
+            <TouchableOpacity onPress={this.confirmation.bind(this)} style={cartButton}><Text style={buttonText}>Add Cart</Text></TouchableOpacity>
+          </View>
+        </View>
+        </View>
       )
-    })
   }
   confirmation = () => {
       Alert.alert(
@@ -151,7 +159,7 @@ const Coffee = (props) => {
 
   return (
     <ScrollView style={container}>
-      <ImageBackground source={require('../../images/background.jpg')} style={backgroundImage} >
+      <Image source={require('../../images/background.jpg')} style={backgroundImage} >
         <Text style={title}>Light Roast</Text>
         <View style={items} >
           {this.lightRoast()}
@@ -165,10 +173,8 @@ const Coffee = (props) => {
           {this.boldRoast()}
         </View>
         <Text style={title}>Coffee Maker</Text>
-        <View style={items} >
           {this.coffeeMakers()}
-        </View>
-      </ImageBackground>
+      </Image>
     </ScrollView>
   );
 }
@@ -188,7 +194,7 @@ styles = StyleSheet.create({
     fontSize:24,
     fontFamily: 'Gurmukhi MN',
     textAlign: 'center',
-    backgroundColor: 'red'
+    backgroundColor: '#ab6454'
   },
   character: {
     textAlign: 'center',
@@ -204,9 +210,9 @@ styles = StyleSheet.create({
   },
   itemPrice: {
     textAlign: 'center',
-    padding: 5,
+    paddingBottom: 5,
     fontWeight: 'bold',
-    fontSize:22
+    fontSize:18
   },
   button: {
     backgroundColor: 'black',
@@ -280,7 +286,8 @@ styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     width: null,
-    height: null
+    height: null,
+    resizeMode:'repeat'
   }
 });
 

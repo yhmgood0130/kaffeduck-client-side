@@ -31,13 +31,13 @@ export default class LogInForm extends Component {
               firebase.auth().signInWithCredential(credential).then((result) => {
                 var token = firebase.auth().currentUser.getIdToken(true)
                   .then((idToken) => {
-                    var base64Url = idToken.split('.')[1];
-                    var base64 = base64Url.replace('-', '+').replace('_', '/');
-                    let parsedToken = JSON.parse(window.atob(base64)).user_id;
-                    AsyncStorage.setItem('access_token', parsedToken);
-                    let token = AsyncStorage.getItem('access_token');
-                    console.log(token);
-                    console.log(parsedToken);
+                    // var base64Url = idToken.split('.')[1];
+                    // var base64 = base64Url.replace('-', '+').replace('_', '/');
+                    // let parsedToken = JSON.parse(window.atob(base64)).user_id;
+                    // AsyncStorage.setItem('access_token', parsedToken);
+                    // let token = AsyncStorage.getItem('access_token');
+                    // console.log(token);
+                    // console.log(parsedToken);
                     Actions.quiz();
                   })
               }, (error) => {
@@ -88,7 +88,7 @@ export default class LogInForm extends Component {
              <View style={styles.SeparatorLine} />
              <Text style={styles.TextStyle}> Login Using Facebook </Text>
            </TouchableOpacity>
-           <TouchableOpacity onPress={Actions.coffee} style={styles.GooglePlusStyle} activeOpacity={0.5}>
+           <TouchableOpacity onPress={Actions.result} style={styles.GooglePlusStyle} activeOpacity={0.5}>
              <Image
               source={require('../../images/google.png')}
               style={styles.ImageIconStyle}

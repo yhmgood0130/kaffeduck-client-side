@@ -13,7 +13,7 @@ const Quiz3 = () => {
           source={require('../../../images/coffee_duck.jpeg')}
           style={styles.logo}
           />
-        <Text style={styles.title}>The light, balanced flavor of most Central American coffees is ideal for many breakfast foods. What is your favorite choice from options below?</Text>
+        <Text style={styles.title}>Breakfast is most important meal of the day. What is your favorite breakfast choice?</Text>
 
         <TouchableOpacity onPress={Actions.result} style={styles.AnswerButton} activeOpacity={0.5}>
 

@@ -13,7 +13,7 @@ const Quiz = () => {
           source={require('../../../images/coffee_duck.jpeg')}
           style={styles.logo}
           />
-        <Text style={styles.title}>Welcome to KaffeDuck! On the next page, KaffeDuck will waddle you through the quiz to help find you the perfect coffee based on your answers.</Text>
+        <Text style={styles.title}>Welcome to KaffeDuck! On the next page, KaffeDuck will waddle you through the quiz to help you find the perfect coffee based on your answers.</Text>
         <TouchableOpacity onPress={Actions.quiz1} style={styles.ButtonStyle} activeOpacity={0.5}>
            <Text style={styles.TextStyle}>Let&apos;s figure it out!</Text>
         </TouchableOpacity>

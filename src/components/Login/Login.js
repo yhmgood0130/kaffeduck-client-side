@@ -25,7 +25,7 @@ class Login extends Component {
             source={require('../../images/coffee_duck.jpeg')}
             style={styles.logo}
             />
-          <Text style={styles.title}>Explore the coffee world with KaffeDuck. This Duck will help you to choose the right type of coffee for you.</Text>
+          <Text style={styles.title}>Explore the coffee world with KaffeDuck. This Duck will help you to choose the right type of coffee with a monthly subscription service.</Text>
         </View>
         <View style={styles.formContainer}>
           <LoginForm />
@@ -61,7 +61,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 14,
     opacity: 0.9,
-    marginTop:20,
+    marginTop:10,
+    paddingBottom:10,
     fontWeight: 'bold',
     fontFamily: 'Gurmukhi MN'
   },

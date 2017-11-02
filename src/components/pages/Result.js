@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   SuggestionText: {
-    paddingBottom:10,
+    padding:20,
     fontSize:14,
     fontWeight: 'bold',
     fontFamily: 'Gurmukhi MN',

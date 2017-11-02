@@ -13,7 +13,7 @@ const Quiz2 = () => {
           source={require('../../../images/coffee_duck.jpeg')}
           style={styles.logo}
           />
-        <Text style={styles.title}>What would Italians do without coffee and biscotti? What would Canadians and Americans do without their doughnuts and coffee? What is your favorite choice from options below?</Text>
+        <Text style={styles.title}>What would Italians do without coffee and biscotti? What is your favorite Baked Goods?</Text>
 
         <TouchableOpacity onPress={Actions.quiz3} style={styles.AnswerButton} activeOpacity={0.5}>
            <Text style={styles.buttonFont}> Biscotti </Text>

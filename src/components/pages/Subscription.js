@@ -28,7 +28,8 @@ const Subscription = (props) => {
     character,
     itemName,
     coffeMakerContainer,
-    coffeeMakerImage
+    coffeeMakerImage,
+    itemPrice
   } = styles
 
   const { coffee, isFetching } = props.coffee;
@@ -68,68 +69,47 @@ const Subscription = (props) => {
     .then((response) => response.json())
   }
 
-  lightRoast = () => {
-    itemType = "coffee";
-    return coffee.map((coffee,index) => {
-      if(coffee.roast_type === "Light Roast"){
+  coffeeList = () => {
       return (
-        <View style={coffeeContainer} key={coffee.resourceId}>
-          <Image style={coffeeImage} source={{uri:coffee.url}} />
-          <Text style={itemName}>{coffee.name}</Text>
-          <Text style={itemDescription}>$ {coffee.price} - {coffee.size} oz</Text>
-          <Text style={itemDescription}>{coffee.description}</Text>
-          <View style={buttonContainer}>
-            <TouchableOpacity style={cartButton}><Text style={buttonText}>Remove</Text></TouchableOpacity>
+        <View style={items} >
+          <View style={coffeeContainer} key={coffee[2].resourceId}>
+            <Image style={coffeeImage} source={{uri:coffee[2].url}} />
+            <Text style={itemName}>{coffee[2].name}</Text>
+            <Text style={itemPrice}>$ {coffee[2].price} - {coffee[2].size} oz</Text>
+            <Text style={itemDescription}>{coffee[2].description}</Text>
+            <View style={buttonContainer}>
+              <TouchableOpacity style={cartButton}><Text style={buttonText}>Remove</Text></TouchableOpacity>
+            </View>
+          </View>
+          <View style={coffeeContainer} key={coffee[4].resourceId}>
+            <Image style={coffeeImage} source={{uri:coffee[4].url}} />
+            <Text style={itemName}>{coffee[4].name}</Text>
+            <Text style={itemPrice}>$ {coffee[4].price} - {coffee[4].size} oz</Text>
+            <Text style={itemDescription}>{coffee[4].description}</Text>
+            <View style={buttonContainer}>
+              <TouchableOpacity style={cartButton}><Text style={buttonText}>Remove</Text></TouchableOpacity>
+            </View>
+          </View>
+          <View style={coffeeContainer} key={coffee[10].resourceId}>
+            <Image style={coffeeImage} source={{uri:coffee[10].url}} />
+            <Text style={itemName}>{coffee[10].name}</Text>
+            <Text style={itemPrice}>$ {coffee[10].price} - {coffee[10].size} oz</Text>
+            <Text style={itemDescription}>{coffee[10].description}</Text>
+            <View style={buttonContainer}>
+              <TouchableOpacity style={cartButton}><Text style={buttonText}>Remove</Text></TouchableOpacity>
+            </View>
           </View>
         </View>
       )
-    }
-    })
   }
 
-  mediumRoast = () => {
-    itemType = "coffee";
-    return coffee.map((coffee,index) => {
-      if(coffee.roast_type === "Medium Roast"){
-      return (
-        <View style={coffeeContainer} key={coffee.resourceId}>
-          <Image style={coffeeImage} source={{uri:coffee.url}} />
-          <Text style={itemName}>{coffee.name}</Text>
-          <Text style={itemDescription}>$ {coffee.price} - {coffee.size} oz</Text>
-          <Text style={itemDescription}>{coffee.description}</Text>
-          <View style={buttonContainer}>
-            <TouchableOpacity key={coffee.resourceId} onPress={this.addCart.bind(this,coffee.resourceId,itemType)} style={cartButton}><Text style={buttonText}>Remove</Text></TouchableOpacity>
-          </View>
-        </View>
-      )
-    }
-    })
-  }
-  boldRoast = () => {
-    itemType = "coffee";
-    return coffee.map((coffee,index) => {
-      if(coffee.roast_type === "Bold Roast"){
-      return (
-        <View style={coffeeContainer} key={coffee.resourceId}>
-          <Image style={coffeeImage} source={{uri:coffee.url}} />
-          <Text style={itemName}>{coffee.name}</Text>
-          <Text style={itemDescription}>$ {coffee.price} - {coffee.size} oz</Text>
-          <Text style={itemDescription}>{coffee.description}</Text>
-          <View style={buttonContainer}>
-            <TouchableOpacity style={cartButton}><Text style={buttonText}>Remove</Text></TouchableOpacity>
-          </View>
-        </View>
-      )
-    }
-    })
-  }
   coffeeMakers = () => {
 
       return (
-        <View style={coffeMakerContainer} key={coffeeMaker[0].resourceId}>
-          <Image style={coffeeMakerImage} source={{uri:coffeeMaker[0].url}} />
-          <Text style={itemName}>{coffeeMaker[0].name}</Text>
-          <Text style={itemDescription}>$ {coffeeMaker[0].price} </Text>
+        <View style={coffeMakerContainer} key={coffeeMaker[1].resourceId}>
+          <Image style={coffeeMakerImage} source={require('../../images/pourover.png')} />
+          <Text style={itemName}>{coffeeMaker[1].name}</Text>
+          <Text style={itemPrice}>$ {coffeeMaker[1].price} </Text>
           <View style={buttonContainer}>
             <TouchableOpacity style={cartButton}><Text style={buttonText}>Remove</Text></TouchableOpacity>
           </View>
@@ -141,9 +121,7 @@ const Subscription = (props) => {
     <ScrollView style={container}>
       <ImageBackground source={require('../../images/background.jpg')} style={backgroundImage} >
         <Text style={title}>Monthly Subscription</Text>
-        <View style={items} >
-          {this.lightRoast()}
-        </View>
+          {this.coffeeList()}
         <Text style={title}>One-Time Delivery</Text>
         <View style={items} >
           {this.coffeeMakers()}
@@ -166,7 +144,7 @@ styles = StyleSheet.create({
     fontSize:24,
     fontFamily: 'Gurmukhi MN',
     textAlign: 'center',
-    backgroundColor: 'red'
+    backgroundColor: '#ab6454'
   },
   character: {
     textAlign: 'center',
@@ -197,6 +175,11 @@ styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap:'wrap',
     alignItems: 'center',
+  },
+  itemPrice: {
+    fontSize:18,
+    paddingBottom:5,
+    fontWeight: 'bold'
   },
   coffeeImage: {
     height:330,
