@@ -17,7 +17,7 @@ const Home = () => {
         source={require('../../images/coffee_duck.jpeg')}
         style={styles.logo}
         />
-      <Text style={styles.title}>Welcome to KaffeDuck! KaffDuck is very excited to show you high-quality coffee.</Text>
+      <Text style={styles.title}>Welcome to KaffeDuck! KaffeDuck is very excited to show you high-quality coffee.</Text>
       <TouchableOpacity onPress={Actions.coffee} style={styles.ButtonStyle} activeOpacity={0.5}>
          <Text style={styles.TextStyle}>See Coffee & Brewing Method</Text>
       </TouchableOpacity>
@@ -39,13 +39,13 @@ const styles = StyleSheet.create({
   logo: {
     width:150,
     height:150,
-    borderRadius: 69
+    borderRadius: 69,
+    marginTop: 10,
   },
   logo2: {
     width:150,
     height:120,
-    marginTop:-40,
-    marginBottom:-10
+    marginTop:-20
   },
   buttonText: {
     color: '#FFFFFF',
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     fontWeight: '700'
   },
   title: {
-    margin:50,
+    margin:30,
     fontSize:22,
     fontWeight: 'bold',
     fontFamily: 'Gurmukhi MN',
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
    borderRadius: 5 ,
    margin: 13,
    position: 'absolute',
-   bottom:68,
+   bottom:36,
    height:70,
    width:300
  },

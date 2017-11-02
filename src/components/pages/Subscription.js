@@ -125,18 +125,16 @@ const Subscription = (props) => {
   }
   coffeeMakers = () => {
 
-    return coffeeMaker.map((coffeeMaker,index) => {
       return (
-        <View style={coffeMakerContainer} key={coffeeMaker.resourceId}>
-          <Image style={coffeeMakerImage} source={{uri:coffeeMaker.url}} />
-          <Text style={itemName}>{coffeeMaker.name}</Text>
-          <Text style={itemDescription}>$ {coffeeMaker.price} </Text>
+        <View style={coffeMakerContainer} key={coffeeMaker[0].resourceId}>
+          <Image style={coffeeMakerImage} source={{uri:coffeeMaker[0].url}} />
+          <Text style={itemName}>{coffeeMaker[0].name}</Text>
+          <Text style={itemDescription}>$ {coffeeMaker[0].price} </Text>
           <View style={buttonContainer}>
             <TouchableOpacity style={cartButton}><Text style={buttonText}>Remove</Text></TouchableOpacity>
           </View>
         </View>
       )
-    })
   }
 
   return (

@@ -35,7 +35,6 @@ const TabIcon = ({ selected, name}) => {
       name == "ducky" ? <Iconic name={name} size={30} color="#fff" /> : <Icon name={name} size={30} color="#fff" />
     )
 }
-// <Scene key="pageTwo" component={PageTwo} title="PageTwo" />
 
 class kaffeduck extends Component {
   componentWillMount() {
@@ -48,6 +47,7 @@ class kaffeduck extends Component {
           messagingSenderId: "181940564334"
         });
     }
+    console.disableYellowBox = true;
 
   checkAuth(){
     return getStoredSessionToken().then(sessionToken =>{

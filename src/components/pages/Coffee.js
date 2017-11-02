@@ -29,7 +29,8 @@ const Coffee = (props) => {
     character,
     itemName,
     coffeMakerContainer,
-    coffeeMakerImage
+    coffeeMakerImage,
+    itemPrice
   } = styles
 
   const { coffee, isFetching } = props.coffee;
@@ -37,7 +38,7 @@ const Coffee = (props) => {
 
   addCart = (resourceId,itemType) => {
     let newOrder = {};
-    
+
     switch(itemType){
       case "coffee":
       newOrder = {
@@ -113,7 +114,7 @@ const Coffee = (props) => {
         <View style={coffeeContainer} key={coffee.resourceId}>
           <Image style={coffeeImage} source={{uri:coffee.url}} />
           <Text style={itemName}>{coffee.name}</Text>
-          <Text style={itemDescription}>$ {coffee.price} - {coffee.size} oz</Text>
+          <Text style={itemPrice}>$ {coffee.price} - {coffee.size} oz</Text>
           <Text style={itemDescription}>{coffee.description}</Text>
           <View style={buttonContainer}>
             <TouchableOpacity onPress={this.confirmation.bind(this)} style={cartButton}><Text style={buttonText}>Add Cart</Text></TouchableOpacity>
@@ -200,6 +201,12 @@ styles = StyleSheet.create({
     padding: 5,
     fontWeight: 'bold',
     fontSize:26
+  },
+  itemPrice: {
+    textAlign: 'center',
+    padding: 5,
+    fontWeight: 'bold',
+    fontSize:22
   },
   button: {
     backgroundColor: 'black',
