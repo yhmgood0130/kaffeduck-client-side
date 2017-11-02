@@ -172,7 +172,7 @@ const Coffee = (props) => {
         <View style={items} >
           {this.boldRoast()}
         </View>
-        <Text style={title}>Coffee Maker</Text>
+        <Text style={title}>Brewing Methods</Text>
           {this.coffeeMakers()}
       </Image>
     </ScrollView>
