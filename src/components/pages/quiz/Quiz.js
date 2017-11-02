@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, StatusBar, Image } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, StatusBar, ImageBackground, Image } from 'react-native';
 import { Provider, connect } from 'react-redux';
 import { Actions, ActionConst, Router, Scene } from 'react-native-router-flux';
 
@@ -7,16 +7,18 @@ import { Actions, ActionConst, Router, Scene } from 'react-native-router-flux';
 const Quiz = () => {
   return (
   <View style={styles.container}>
-    <View style={styles.logoContainer}>
-      <Image
-        source={require('../../../images/coffee_duck.jpeg')}
-        style={styles.logo}
-        />
-      <Text style={styles.title}>Welcome to KaffeDuck! On the next page, KaffeDuck will waddle you through the quiz to help find you the perfect coffee based on your answers.</Text>
-      <TouchableOpacity onPress={Actions.quiz1} style={styles.ButtonStyle} activeOpacity={0.5}>
-         <Text style={styles.TextStyle}>Let&apos;s figure it out!</Text>
-      </TouchableOpacity>
-     </View>
+    <ImageBackground source={require('../../../images/background.jpg')} style={styles.backgroundImage} >
+      <View style={styles.logoContainer}>
+        <Image
+          source={require('../../../images/coffee_duck.jpeg')}
+          style={styles.logo}
+          />
+        <Text style={styles.title}>Welcome to KaffeDuck! On the next page, KaffeDuck will waddle you through the quiz to help find you the perfect coffee based on your answers.</Text>
+        <TouchableOpacity onPress={Actions.quiz1} style={styles.ButtonStyle} activeOpacity={0.5}>
+           <Text style={styles.TextStyle}>Let&apos;s figure it out!</Text>
+        </TouchableOpacity>
+       </View>
+    </ImageBackground>
    </View>
  )
 }
@@ -24,7 +26,7 @@ const Quiz = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f7d734"
+    backgroundColor: "transparent"
   },
   logoContainer: {
     flexGrow:1,
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
   ButtonStyle: {
    flexDirection: 'row',
    alignItems: 'center',
-   backgroundColor: '#dc4e41',
+   backgroundColor: 'rgb(147,156,76)',
    borderRadius: 5 ,
    margin: 13,
    position: 'absolute',
@@ -73,6 +75,11 @@ const styles = StyleSheet.create({
    textAlign: 'center',
    fontSize:18,
    fontWeight: 'bold'
+ },
+ backgroundImage: {
+   flex: 1,
+   width: null,
+   height: null,
  }
 });
 

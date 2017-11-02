@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     backgroundColor: "blue"
   },
   AnswerButton: {
-   backgroundColor: '#dc4e41',
+   backgroundColor: 'rgb(147,156,76)',
    borderRadius: 5 ,
    padding: 10,
    margin: 10

@@ -14,7 +14,7 @@ const parsedToken = AsyncStorage.getItem('access_token');
 const Coffee = (props) => {
   const {
     container,
-    text,
+    title,
     button,
     buttonText,
     itemContainer,
@@ -24,7 +24,9 @@ const Coffee = (props) => {
     buttonContainer,
     cartButton,
     itemDescription,
-    backgroundImage
+    backgroundImage,
+    character,
+    itemName
   } = styles
 
   const { coffee, isFetching } = props.coffee;
@@ -71,9 +73,9 @@ const Coffee = (props) => {
       return (
         <View style={itemContainer} key={coffee.resourceId}>
           <Image style={itemImage} source={{uri:coffee.url}} />
-          <Text style={itemDescription}>{coffee.name}</Text>
-          <Text style={itemDescription}>$ {coffee.price}</Text>
-          <Text style={itemDescription}>{coffee.size} oz</Text>
+          <Text style={itemName}>{coffee.name}</Text>
+          <Text style={itemDescription}>$ {coffee.price} - {coffee.size} oz</Text>
+          <Text style={itemDescription}>{coffee.description}</Text>
           <View style={buttonContainer}>
             <TouchableOpacity style={cartButton}><Text>Add Cart</Text></TouchableOpacity>
           </View>
@@ -90,9 +92,9 @@ const Coffee = (props) => {
       return (
         <View style={itemContainer} key={coffee.resourceId}>
           <Image style={itemImage} source={{uri:coffee.url}} />
-          <Text style={itemDescription}>{coffee.name}</Text>
-          <Text style={itemDescription}>$ {coffee.price}</Text>
-          <Text style={itemDescription}>{coffee.size} oz</Text>
+          <Text style={itemName}>{coffee.name}</Text>
+          <Text style={itemDescription}>$ {coffee.price} - {coffee.size} oz</Text>
+          <Text style={itemDescription}>{coffee.description}</Text>
           <View style={buttonContainer}>
             <TouchableOpacity key={coffee.resourceId} onPress={this.addCart.bind(this,coffee.resourceId,itemType)} style={cartButton}><Text>Add Cart</Text></TouchableOpacity>
           </View>
@@ -108,8 +110,9 @@ const Coffee = (props) => {
       return (
         <View style={itemContainer} key={coffee.resourceId}>
           <Image style={itemImage} source={{uri:coffee.url}} />
-          <Text style={itemDescription}>{coffee.name}</Text>
-          <Text style={itemDescription}>$ {coffee.price}</Text>
+          <Text style={itemName}>{coffee.name}</Text>
+          <Text style={itemDescription}>$ {coffee.price} - {coffee.size} oz</Text>
+          <Text style={itemDescription}>{coffee.description}</Text>
           <View style={buttonContainer}>
             <TouchableOpacity style={cartButton}><Text>Add Cart</Text></TouchableOpacity>
           </View>
@@ -123,8 +126,12 @@ const Coffee = (props) => {
     return coffeeMaker.map((coffeeMaker,index) => {
       return (
         <View key={coffeeMaker.resourceId}>
-          <Text>{coffeeMaker.name}</Text>
-          <Text>$ {coffeeMaker.price} </Text>
+          <Image style={itemImage} source={{uri:coffeeMaker.url}} />
+          <Text style={itemName}>{coffeeMaker.name}</Text>
+          <Text style={itemDescription}>$ {coffeeMaker.price} </Text>
+          <View style={buttonContainer}>
+            <TouchableOpacity style={cartButton}><Text>Add Cart</Text></TouchableOpacity>
+          </View>
         </View>
       )
     })
@@ -133,19 +140,19 @@ const Coffee = (props) => {
   return (
     <ScrollView style={container}>
       <ImageBackground source={require('../../images/background.jpg')} style={backgroundImage} >
-        <Text style={text}>Light Roast</Text>
+        <Text style={title}>Light Roast</Text>
         <View style={items} >
           {this.lightRoast()}
         </View>
-        <Text style={text}>Medium Roast</Text>
+        <Text style={title}>Medium Roast</Text>
         <View style={items} >
           {this.mediumRoast()}
         </View>
-        <Text style={text}>Bold Roast</Text>
+        <Text style={title}>Bold Roast</Text>
         <View style={items} >
           {this.boldRoast()}
         </View>
-        <Text style={text}>Coffee Maker</Text>
+        <Text style={title}>Coffee Maker</Text>
         <View style={items} >
           {this.coffeeMakers()}
         </View>
@@ -154,13 +161,32 @@ const Coffee = (props) => {
   );
 }
 
+const resizeMode = 'repeat';
+
 styles = StyleSheet.create({
   container: {
-    marginTop: 20,
-    padding: 20
+    backgroundColor: "transparent"
   },
-  text: {
-    textAlign: 'center'
+  title: {
+    textAlign: 'center',
+    padding: 20,
+    fontWeight: 'bold',
+    fontSize:24,
+    fontFamily: 'Gurmukhi MN',
+    textAlign: 'center',
+    backgroundColor: 'red'
+  },
+  character: {
+    textAlign: 'center',
+    padding: 5,
+    fontWeight: 'bold',
+    fontSize: 16
+  },
+  itemName: {
+    textAlign: 'center',
+    padding: 5,
+    fontWeight: 'bold',
+    fontSize:26
   },
   button: {
     backgroundColor: 'black',
@@ -172,20 +198,23 @@ styles = StyleSheet.create({
     color: 'white'
   },
   items: {
-    flexGrow:1,
+    flex:1,
     flexDirection: 'row',
+    flexWrap:'wrap',
     alignItems: 'center',
   },
   itemImage: {
     height:250,
     width: 100,
-    marginBottom: 10
+    marginBottom: 10,
+    resizeMode: 'contain'
   },
   itemContainer: {
-    padding:10,
-    height:400,
-    width:Dimensions.get('window').width / 2.2,
-    borderWidth:4,
+    margin:2,
+    height:520,
+    width:Dimensions.get('window').width / 2 - 4,
+    borderWidth: 4,
+    justifyContent: 'center',
     alignItems:'center'
   },
   buttonContainer: {
@@ -196,15 +225,20 @@ styles = StyleSheet.create({
   },
   cartButton: {
     backgroundColor: 'rgba(255,62,255,0.8)',
-    padding: 5
+    padding: 5,
+    position: 'absolute',
+    bottom: 20
   },
   itemDescription: {
-    paddingBottom: 5
+    paddingBottom: 5,
+    width:130,
+    textAlign: 'center',
+    fontWeight: 'bold'
   },
   backgroundImage: {
     flex: 1,
     width: null,
-    height: null,
+    height: null
   }
 });
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, StatusBar, Image } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, StatusBar, ImageBackground, Image } from 'react-native';
 import { Provider, connect } from 'react-redux';
 import { Actions, ActionConst, Router, Scene } from 'react-native-router-flux';
 
@@ -7,26 +7,28 @@ import { Actions, ActionConst, Router, Scene } from 'react-native-router-flux';
 const Quiz1 = () => {
   return (
   <View style={styles.container}>
-    <View style={styles.logoContainer}>
-      <Image
-        source={require('../../../images/coffee_duck.jpeg')}
-        style={styles.logo}
-        />
-      <Text style={styles.title}>Chocolate and coffee is a long-standing favorite amongst food-and-drink pairings. What is your favorite choice from options below?</Text>
+    <ImageBackground source={require('../../../images/background.jpg')} style={styles.backgroundImage} >
+      <View style={styles.logoContainer}>
+        <Image
+          source={require('../../../images/coffee_duck.jpeg')}
+          style={styles.logo}
+          />
+        <Text style={styles.title}>Chocolate and coffee is a long-standing favorite amongst food-and-drink pairings. What is your favorite choice from options below?</Text>
 
-      <TouchableOpacity onPress={Actions.quiz2} style={styles.AnswerButton} activeOpacity={0.5}>
-
-         <Text style={styles.buttonFont}> Dark Chocolate </Text>
-       </TouchableOpacity>
-       <TouchableOpacity onPress={Actions.quiz2} style={styles.AnswerButton} activeOpacity={0.5}>
-
-          <Text style={styles.buttonFont}> White Chocolate </Text>
-        </TouchableOpacity>
         <TouchableOpacity onPress={Actions.quiz2} style={styles.AnswerButton} activeOpacity={0.5}>
 
-           <Text style={styles.buttonFont}> Brownie </Text>
+           <Text style={styles.buttonFont}> Dark Chocolate </Text>
          </TouchableOpacity>
-     </View>
+         <TouchableOpacity onPress={Actions.quiz2} style={styles.AnswerButton} activeOpacity={0.5}>
+
+            <Text style={styles.buttonFont}> White Chocolate </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={Actions.quiz2} style={styles.AnswerButton} activeOpacity={0.5}>
+
+             <Text style={styles.buttonFont}> Brownie </Text>
+           </TouchableOpacity>
+       </View>
+     </ImageBackground>
    </View>
  )
 }
@@ -34,7 +36,7 @@ const Quiz1 = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f7d734"
+    backgroundColor: "transparent"
   },
   logoContainer: {
     flexGrow:1,
@@ -63,7 +65,7 @@ const styles = StyleSheet.create({
    flexGrow:1,
    alignItems: 'center',
    justifyContent: 'center',
-   backgroundColor: '#dc4e41',
+   backgroundColor: 'rgb(147,156,76)',
    height: 69,
    width: 300,
    borderRadius: 5 ,
@@ -75,6 +77,11 @@ const styles = StyleSheet.create({
    marginBottom : 4,
    marginRight :20,
    textAlign: 'center',
+ },
+ backgroundImage: {
+   flex: 1,
+   width: null,
+   height: null,
  }
 });
 

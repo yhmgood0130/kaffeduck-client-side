@@ -10,7 +10,7 @@ const Home = () => {
     <ImageBackground source={require('../../images/background.jpg')} style={styles.backgroundImage} >
     <View style={styles.logoContainer}>
     <Image
-      source={require('../../images/logo1.png')}
+      source={require('../../images/logo.png')}
       style={styles.logo2}
       />
       <Image

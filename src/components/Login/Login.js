@@ -18,8 +18,8 @@ class Login extends Component {
       <ImageBackground source={require('../../images/background.jpg')} style={styles.backgroundImage} >
         <View style={styles.logoContainer}>
         <Image
-          source={require('../../images/coffee_duck.jpeg')}
-          style={styles.logo}
+          source={require('../../images/logo.png')}
+          style={styles.logo2}
           />
           <Image
             source={require('../../images/coffee_duck.jpeg')}
@@ -50,11 +50,16 @@ const styles = StyleSheet.create({
     height:100,
     borderRadius: 49
   },
+  logo2: {
+    width:150,
+    height:100,
+    marginTop:-30
+  },
   title: {
     color: "black",
-    width: 200,
+    width: 220,
     textAlign: "center",
-    fontSize: 15,
+    fontSize: 14,
     opacity: 0.9,
     marginTop:20,
     fontWeight: 'bold',

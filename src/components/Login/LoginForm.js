@@ -88,7 +88,7 @@ export default class LogInForm extends Component {
              <View style={styles.SeparatorLine} />
              <Text style={styles.TextStyle}> Login Using Facebook </Text>
            </TouchableOpacity>
-           <TouchableOpacity onPress={Actions.result} style={styles.GooglePlusStyle} activeOpacity={0.5}>
+           <TouchableOpacity onPress={Actions.coffee} style={styles.GooglePlusStyle} activeOpacity={0.5}>
              <Image
               source={require('../../images/google.png')}
               style={styles.ImageIconStyle}
@@ -100,12 +100,6 @@ export default class LogInForm extends Component {
     );
   }
 }
-
-// <TouchableOpacity onPress={Actions.quiz} style={styles.FacebookStyle} activeOpacity={0.5}>
-
-// onSubmitEditing={() => this.passwordInput.focus()}
-
-// ref={(input) => this.passwordInput = input}
 
 const styles = StyleSheet.create({
   container:{
