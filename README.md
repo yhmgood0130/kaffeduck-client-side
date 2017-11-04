@@ -22,7 +22,7 @@ KaffeDuck is a monthly subscription mobile app for coffee. KaffeDuck will introd
 
 ## Video Walkthrough
 
-[![Alt text](https://www.youtube.com/watch?v=fPfgLCxmrEE&feature=youtu.be)
+[![Alt text](https://www.youtube.com/watch?v=fPfgLCxmrEE&feature=youtu.be)]
 
 ## Wireframe
 
