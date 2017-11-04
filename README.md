@@ -1,5 +1,7 @@
 # KaffeDuck
 
+![Image](https://github.com/yhmgood0130/kaffeduck-client-side/blob/master/src/images/coffee_duck.jpeg)
+
 ## User Story
 
 * As a user, I want to know what the mobile application is about.
@@ -24,11 +26,11 @@ KaffeDuck is a monthly subscription mobile app for coffee. KaffeDuck will introd
 
 ## Wireframe
 
-![Image](https://github.com/yhmgood0130/Q1-Project/blob/master/assets/images/main_web.png)
-![Image](https://github.com/yhmgood0130/Q1-Project/blob/master/assets/images/main_web.png)
-![Image](https://github.com/yhmgood0130/Q1-Project/blob/master/assets/images/main_web.png)
-![Image](https://github.com/yhmgood0130/Q1-Project/blob/master/assets/images/main_web.png)
-![Image](https://github.com/yhmgood0130/Q1-Project/blob/master/assets/images/main_web.png)
+![Image](https://github.com/yhmgood0130/kaffeduck-client-side/blob/master/src/images/wire1.png)
+![Image](https://github.com/yhmgood0130/kaffeduck-client-side/blob/master/src/images/wire2.png)
+![Image](https://github.com/yhmgood0130/kaffeduck-client-side/blob/master/src/images/wire3.png)
+![Image](https://github.com/yhmgood0130/kaffeduck-client-side/blob/master/src/images/wire4.png)
+![Image](https://github.com/yhmgood0130/kaffeduck-client-side/blob/master/src/images/wire5.png)
 
 ## Built with
 
