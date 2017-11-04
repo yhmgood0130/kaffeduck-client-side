@@ -18,9 +18,21 @@
 
 KaffeDuck is a monthly subscription mobile app for coffee. KaffeDuck will introduce a new customer to find the perfect coffee by providing them a quiz to answer to match your flavor profile.
 
+## Video Walkthrough
+
+[![Alt text](https://www.youtube.com/watch?v=fPfgLCxmrEE&feature=youtu.be)
+
+## Wireframe
+
+![Image](https://github.com/yhmgood0130/Q1-Project/blob/master/assets/images/main_web.png)
+![Image](https://github.com/yhmgood0130/Q1-Project/blob/master/assets/images/main_web.png)
+![Image](https://github.com/yhmgood0130/Q1-Project/blob/master/assets/images/main_web.png)
+![Image](https://github.com/yhmgood0130/Q1-Project/blob/master/assets/images/main_web.png)
+![Image](https://github.com/yhmgood0130/Q1-Project/blob/master/assets/images/main_web.png)
+
 ## Built with
 
-* [ERD Frame](https://www.draw.io/)
+* [Wireframe CC](https://wireframe.cc/) - Design the outline of website
 
 * Front-end - React Native, Redux, Firebase Authentication
 
